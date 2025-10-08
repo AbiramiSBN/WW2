@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World War II: A Comprehensive History</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e0e6ed;
+            line-height: 1.8;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border-bottom: 3px solid #2196f3;
+            margin-left: 60px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #90caf9;
+            font-style: italic;
+        }
+
+        nav {
+            position: fixed;
+            left: -250px;
+            top: 0;
+            height: 100vh;
+            width: 250px;
+            background: rgba(13, 71, 161, 0.95);
+            backdrop-filter: blur(10px);
+            border-right: 2px solid #2196f3;
+            padding: 2rem 0;
+            z-index: 1000;
+            overflow-y: auto;
+            transition: left 0.3s ease;
+        }
+
+        nav.open {
+            left: 0;
+        }
+
+        .hamburger {
+            position: fixed;
+            left: 10px;
+            top: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(33, 150, 243, 0.9);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            padding: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background: rgba(33, 150, 243, 1);
+            transform: scale(1.1);
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .nav-overlay.open {
+            display: block;
+        }
+
+        .nav-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .nav-container a {
+            color: #90caf9;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 1rem 2rem;
+            border-left: 3px solid transparent;
+            display: block;
+        }
+
+        .nav-container a:hover {
+            color: #ffffff;
+            background: rgba(33, 150, 243, 0.2);
+            border-left: 3px solid #2196f3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin-left: 60px;
+            margin-right: auto;
+            padding: 3rem 2rem;
+        }
+
+        .chapter {
+            background: rgba(26, 31, 58, 0.6);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid #2196f3;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .chapter:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(33, 150, 243, 0.3);
+        }
+
+        .chapter-number {
+            color: #2196f3;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            color: #64b5f6;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        h3 {
+            color: #90caf9;
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: #b0bec5;
+        }
+
+        .stat-box {
+            background: rgba(13, 71, 161, 0.2);
+            border: 2px solid #2196f3;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .stat-box h4 {
+            color: #2196f3;
+            margin-bottom: 1rem;
+        }
+
+        .stat-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .stat-box li {
+            padding: 0.5rem 0;
+            color: #90caf9;
+            border-bottom: 1px solid rgba(33, 150, 243, 0.2);
+        }
+
+        .stat-box li:last-child {
+            border-bottom: none;
+        }
+
+        .sources {
+            background: rgba(10, 14, 39, 0.8);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            margin-left: 60px;
+            border-top: 3px solid #2196f3;
+        }
+
+        .sources h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #64b5f6;
+        }
+
+        .source-list {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .source-item {
+            background: rgba(26, 31, 58, 0.5);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            border-left: 3px solid #2196f3;
+            transition: background 0.3s ease;
+        }
+
+        .source-item:hover {
+            background: rgba(26, 31, 58, 0.8);
+        }
+
+        .source-number {
+            color: #2196f3;
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        footer {
+            background: #0a0e27;
+            padding: 2rem;
+            text-align: center;
+            color: #64b5f6;
+            border-top: 1px solid #2196f3;
+            margin-left: 60px;
+        }
+
+        @media (max-width: 768px) {
+            header, .container, .sources, footer {
+                margin-left: 0;
+            }
+
+            .hamburger {
+                left: 10px;
+                top: 10px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                padding-left: 50px;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+                padding-left: 50px;
+            }
+
+            .chapter {
+                padding: 1.5rem;
+            }
+
+            .nav-container a {
+                padding: 0.75rem 1.5rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1440px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 1441px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="nav-overlay" onclick="toggleMenu()"></div>
+
+    <header>
+        <h1>World War II</h1>
+        <p class="subtitle">The Global Conflict That Shaped Modern History (1939-1945)</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#chapter1">Origins</a>
+            <a href="#chapter2">Major Powers</a>
+            <a href="#countries">Countries</a>
+            <a href="#chapter3">Key Battles</a>
+            <a href="#chapter4">Holocaust</a>
+            <a href="#chapter5">Conclusion</a>
+            <a href="#sources">Sources</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="chapter1" class="chapter">
+            <div class="chapter-number">Chapter 1</div>
+            <h2>Origins and Outbreak</h2>
+            <p>World War II emerged from the unresolved tensions and economic instability following World War I. The Treaty of Versailles imposed harsh conditions on Germany, creating widespread resentment and economic hardship that would later fuel extremist political movements.</p>
+            
+            <p><strong>Summary:</strong> The origins of World War II can be traced to the punitive Treaty of Versailles, the global economic depression of the 1930s, and the rise of fascist ideologies in Germany, Italy, and Japan. These factors combined with failed appeasement policies and aggressive territorial expansion to ignite a conflict that would engulf the entire world, beginning with Germany's invasion of Poland on September 1, 1939.</p>
+            
+            <h3>The Rise of Totalitarian Regimes</h3>
+            <p>The 1930s witnessed the rise of fascist and totalitarian governments across Europe and Asia. In Germany, Adolf Hitler and the Nazi Party capitalized on economic depression and national humiliation to seize power in 1933. Italy under Benito Mussolini and Japan under military leadership pursued aggressive expansionist policies.</p>
+            
+            <p>The war officially began on September 1, 1939, when Germany invaded Poland. Two days later, Britain and France declared war on Germany, honoring their commitment to Polish independence. This marked the beginning of the most devastating conflict in human history.</p>
+
+            <div class="stat-box">
+                <h4>Key Pre-War Events</h4>
+                <ul>
+                    <li>1933 - Hitler becomes Chancellor of Germany</li>
+                    <li>1936 - Germany remilitarizes the Rhineland</li>
+                    <li>1938 - Anschluss (annexation of Austria)</li>
+                    <li>1938 - Munich Agreement and Sudetenland crisis</li>
+                    <li>1939 - Germany invades Poland, war begins</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="chapter2" class="chapter">
+            <div class="chapter-number">Chapter 2</div>
+            <h2>The Major Powers and Alliances</h2>
+            
+            <h3>The Axis Powers</h3>
+            <p>The Axis alliance was formed between Germany, Italy, and Japan, united by their expansionist ambitions and opposition to communist and democratic powers. Germany, under Hitler's leadership, sought to establish German dominance over Europe and eliminate what the Nazis considered "inferior" races.</p>
+            
+            <p>Italy joined the Axis hoping to restore the glory of the Roman Empire through Mediterranean conquest. Japan pursued imperial expansion across Asia and the Pacific, seeking resources and territory to fuel its growing empire.</p>
+
+            <h3>The Allied Powers</h3>
+            <p>The Allies initially consisted of Britain, France, and Poland, later joined by the Soviet Union (after Germany's invasion in 1941) and the United States (after Pearl Harbor in December 1941). The "Big Three" leaders—Winston Churchill of Britain, Franklin D. Roosevelt (later Harry Truman) of the United States, and Joseph Stalin of the Soviet Union—coordinated strategy through numerous conferences.</p>
+
+            <p><strong>Summary:</strong> The war was fought between two major military alliances: the Axis Powers (primarily Germany, Italy, and Japan) seeking territorial expansion and ideological dominance, and the Allied Powers (including the United States, Soviet Union, United Kingdom, China, and France) who fought to preserve freedom and stop fascist aggression. Despite their ideological differences, the Allies united against the common threat posed by the Axis, ultimately achieving victory through combined industrial might, manpower, and strategic coordination across multiple theaters of war.</p>
+
+            <div class="stat-box">
+                <h4>Military Mobilization</h4>
+                <ul>
+                    <li>Soviet Union: ~34 million personnel mobilized</li>
+                    <li>Germany: ~18 million personnel mobilized</li>
+                    <li>United States: ~16 million personnel mobilized</li>
+                    <li>Japan: ~9 million personnel mobilized</li>
+                    <li>United Kingdom: ~5.9 million personnel mobilized</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="countries" class="chapter">
+            <div class="chapter-number">Special Section</div>
+            <h2>Allied and Axis Nations</h2>
+            
+            <h3>The Allied Powers</h3>
+            <div class="stat-box">
+                <h4>Major Allied Nations</h4>
+                <ul>
+                    <li><strong>United States</strong> - Entered 1941 after Pearl Harbor</li>
+                    <li><strong>Soviet Union</strong> - Entered 1941 after German invasion</li>
+                    <li><strong>United Kingdom</strong> - 1939-1945</li>
+                    <li><strong>China</strong> - Fighting Japan since 1937</li>
+                    <li><strong>France</strong> - 1939-1940, Free France 1940-1945</li>
+                    <li><strong>Poland</strong> - 1939-1945 (government in exile)</li>
+                    <li><strong>Canada</strong> - 1939-1945</li>
+                    <li><strong>Australia</strong> - 1939-1945</li>
+                    <li><strong>New Zealand</strong> - 1939-1945</li>
+                    <li><strong>India</strong> - 1939-1945 (British colony)</li>
+                    <li><strong>South Africa</strong> - 1939-1945</li>
+                    <li><strong>Yugoslavia</strong> - 1941-1945</li>
+                    <li><strong>Greece</strong> - 1940-1945</li>
+                    <li><strong>Netherlands</strong> - 1940-1945</li>
+                    <li><strong>Belgium</strong> - 1940-1945</li>
+                    <li><strong>Norway</strong> - 1940-1945</li>
+                    <li><strong>Czechoslovakia</strong> - 1939-1945 (government in exile)</li>
+                    <li><strong>Brazil</strong> - 1942-1945</li>
+                    <li><strong>Mexico</strong> - 1942-1945</li>
+                    <li><strong>Ethiopia</strong> - 1935-1941, 1941-1945</li>
+                </ul>
+            </div>
+
+            <h3>The Axis Powers</h3>
+            <div class="stat-box">
+                <h4>Major Axis Nations</h4>
+                <ul>
+                    <li><strong>Germany</strong> - 1939-1945 (Nazi regime)</li>
+                    <li><strong>Italy</strong> - 1940-1943 (Fascist), 1943-1945 (Co-belligerent with Allies)</li>
+                    <li><strong>Japan</strong> - 1941-1945 (officially), fighting in China since 1937</li>
+                    <li><strong>Hungary</strong> - 1941-1945</li>
+                    <li><strong>Romania</strong> - 1941-1944</li>
+                    <li><strong>Bulgaria</strong> - 1941-1944</li>
+                    <li><strong>Finland</strong> - 1941-1944 (co-belligerent with Germany)</li>
+                    <li><strong>Thailand</strong> - 1942-1945</li>
+                    <li><strong>Iraq</strong> - 1941 (briefly)</li>
+                    <li><strong>Slovakia</strong> - 1939-1945 (puppet state)</li>
+                    <li><strong>Croatia</strong> - 1941-1945 (puppet state)</li>
+                </ul>
+            </div>
+
+            <h3>Neutral Nations (Select)</h3>
+            <div class="stat-box">
+                <h4>Countries That Remained Neutral</h4>
+                <ul>
+                    <li><strong>Switzerland</strong> - Maintained armed neutrality</li>
+                    <li><strong>Sweden</strong> - Neutral but provided iron ore to Germany</li>
+                    <li><strong>Spain</strong> - Neutral but sympathetic to Axis</li>
+                    <li><strong>Portugal</strong> - Neutral, important strategic location</li>
+                    <li><strong>Ireland</strong> - Neutral throughout the war</li>
+                    <li><strong>Turkey</strong> - Neutral until February 1945</li>
+                    <li><strong>Argentina</strong> - Neutral until March 1945</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="chapter3" class="chapter">
+            <div class="chapter-number">Chapter 3</div>
+            <h2>Turning Points and Major Battles</h2>
+            
+            <h3>Early Axis Success (1939-1942)</h3>
+            <p>The early years of the war saw stunning German victories. The Wehrmacht employed "Blitzkrieg" (lightning war) tactics, combining tanks, aircraft, and mobile infantry to overwhelm opponents. France fell in just six weeks in 1940, and by 1941, Germany controlled most of continental Europe.</p>
+
+            <h3>The Battle of Stalingrad (1942-1943)</h3>
+            <p>The Battle of Stalingrad marked a crucial turning point on the Eastern Front. The brutal urban combat lasted from August 1942 to February 1943, resulting in catastrophic casualties on both sides. The Soviet victory destroyed Germany's Sixth Army and marked the beginning of the Soviet advance westward.</p>
+
+            <h3>D-Day and the Liberation of Europe</h3>
+            <p>On June 6, 1944, Allied forces launched Operation Overlord, the largest amphibious invasion in history. Over 156,000 troops landed on the beaches of Normandy, France, establishing a crucial foothold in Western Europe. This operation, combined with Soviet advances from the east, began the final phase of Germany's defeat.</p>
+
+            <h3>The Pacific Theater</h3>
+            <p>In the Pacific, the United States fought a brutal island-hopping campaign against Japan. Key battles at Midway (1942), Iwo Jima, and Okinawa demonstrated both American determination and the fierce resistance of Japanese forces. The war in the Pacific concluded with the atomic bombings of Hiroshima and Nagasaki in August 1945, leading to Japan's surrender.</p>
+
+            <p><strong>Summary:</strong> The war's trajectory shifted dramatically between 1942-1943 when the Axis powers, despite early victories using Blitzkrieg tactics and surprise attacks, began suffering decisive defeats at Stalingrad, El Alamein, and Midway. These turning points, combined with the Allied invasion of Normandy in 1944 and the relentless Soviet advance from the east, sealed the fate of the Axis powers, demonstrating that industrial capacity, manpower, and strategic coordination ultimately overcome initial tactical advantages.</p>
+
+            <div class="stat-box">
+                <h4>Major Battle Statistics</h4>
+                <ul>
+                    <li>Battle of Stalingrad: ~2 million total casualties</li>
+                    <li>D-Day Landings: ~10,000 Allied casualties on first day</li>
+                    <li>Battle of Berlin: ~1.3 million total casualties</li>
+                    <li>Battle of Midway: Decisive naval engagement, 4 Japanese carriers sunk</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="chapter4" class="chapter">
+            <div class="chapter-number">Chapter 4</div>
+            <h2>The Holocaust and War Crimes</h2>
+            
+            <p>The Holocaust stands as one of history's darkest chapters. Nazi Germany systematically murdered approximately six million Jews, along with millions of others including Roma, disabled individuals, political dissidents, homosexuals, and prisoners of war. This genocide was carried out through concentration camps, mass shootings, gas chambers, and forced labor.</p>
+
+            <p>The discovery of concentration camps by Allied forces in 1945 revealed the full horror of Nazi atrocities. Camps like Auschwitz-Birkenau, Treblinka, and Bergen-Belsen became symbols of industrialized mass murder. The Nuremberg Trials, held after the war, prosecuted major Nazi officials for crimes against humanity, establishing important precedents in international law.</p>
+
+            <p>War crimes were not limited to Nazi Germany. Japanese forces committed atrocities including the Rape of Nanking, where hundreds of thousands of Chinese civilians were murdered. The treatment of prisoners of war violated international conventions on all sides, though the scale and systematic nature of Nazi and Japanese crimes were unprecedented.</p>
+
+            <p><strong>Summary:</strong> The Holocaust represents humanity's darkest chapter, where Nazi Germany systematically murdered six million Jews and millions of others in an industrialized genocide that shocked the world. The discovery of concentration camps, the subsequent Nuremberg Trials, and the documentation of atrocities committed by both Axis powers established new international laws against crimes against humanity, forever changing how the world views war crimes and genocide, while serving as an eternal reminder of the depths of human cruelty and the importance of vigilance against hatred and discrimination.</p>
+
+            <div class="stat-box">
+                <h4>Holocaust Victims (Estimated)</h4>
+                <ul>
+                    <li>Jews: ~6 million</li>
+                    <li>Soviet POWs: ~3 million</li>
+                    <li>Ethnic Poles: ~1.8 million</li>
+                    <li>Disabled individuals: ~250,000</li>
+                    <li>Roma: ~250,000</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="chapter5" class="chapter">
+            <div class="chapter-number">Chapter 5</div>
+            <h2>Conclusion and Legacy</h2>
+            
+            <h3>The End of the War</h3>
+            <p>Germany surrendered unconditionally on May 8, 1945 (V-E Day), following Hitler's suicide and the fall of Berlin. Japan surrendered on August 15, 1945 (V-J Day), following the atomic bombings of Hiroshima and Nagasaki and the Soviet invasion of Manchuria. World War II officially ended on September 2, 1945, with Japan's formal surrender aboard the USS Missouri.</p>
+
+            <h3>Human Cost</h3>
+            <p>World War II was the deadliest conflict in human history. An estimated 70-85 million people perished, representing approximately 3% of the world's 1940 population. The Soviet Union suffered the greatest losses, with over 27 million deaths. The war also displaced millions, created refugees, and left much of Europe and Asia in ruins.</p>
+
+            <h3>The Post-War World</h3>
+            <p>The war's end reshaped the global order. The United Nations was established in 1945 to prevent future conflicts. Europe was divided between Western democratic nations and Soviet-controlled Eastern bloc countries, setting the stage for the Cold War. The United States and Soviet Union emerged as superpowers, while traditional European powers like Britain and France declined in relative influence.</p>
+
+            <p>The war accelerated decolonization, as weakened European powers could no longer maintain their empires. It also spurred technological advancement, from jet engines to nuclear energy. The Nuremberg and Tokyo trials established principles of international law regarding war crimes and crimes against humanity that remain relevant today.</p>
+
+            <p><strong>Summary:</strong> World War II fundamentally reshaped the global order, ending with 70-85 million deaths and establishing the United States and Soviet Union as superpowers while diminishing European colonial empires. The war's legacy includes the formation of the United Nations, the division of Europe that sparked the Cold War, the acceleration of decolonization movements worldwide, unprecedented technological advancement, and the establishment of international legal frameworks for prosecuting war crimes—all of which continue to influence international relations, human rights law, and global politics in the 21st century.</p>
+
+            <div class="stat-box">
+                <h4>Total War Casualties (Estimated)</h4>
+                <ul>
+                    <li>Total Deaths: 70-85 million</li>
+                    <li>Soviet Union: ~27 million</li>
+                    <li>China: ~15-20 million</li>
+                    <li>Germany: ~7-9 million</li>
+                    <li>Poland: ~6 million</li>
+                    <li>Japan: ~3 million</li>
+                    <li>Civilian deaths comprised approximately 55% of total deaths</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <div id="sources" class="sources">
+        <h2>Sources and References</h2>
+        <div class="source-list">
+            <div class="source-item">
+                <span class="source-number">[1]</span>
+                Beevor, Antony. <em>The Second World War</em>. Little, Brown and Company, 2012.
+            </div>
+            <div class="source-item">
+                <span class="source-number">[2]</span>
+                Keegan, John. <em>The Second World War</em>. Penguin Books, 1989.
+            </div>
+            <div class="source-item">
+                <span class="source-number">[3]</span>
+                Weinberg, Gerhard L. <em>A World at Arms: A Global History of World War II</em>. Cambridge University Press, 2005.
+            </div>
+            <div class="source-item">
+                <span class="source-number">[4]</span>
+                United States Holocaust Memorial Museum. "Holocaust Encyclopedia." <em>ushmm.org</em>.
+            </div>
+            <div class="source-item">
+                <span class="source-number">[5]</span>
+                Gilbert, Martin. <em>The Second World War: A Complete History</em>. Henry Holt and Company, 1989.
+            </div>
+            <div class="source-item">
+                <span class="source-number">[6]</span>
+                Evans, Richard J. <em>The Third Reich at War</em>. Penguin Press, 2009.
+            </div>
+            <div class="source-item">
+                <span class="source-number">[7]</span>
+                Hastings, Max. <em>All Hell Let Loose: The World at War 1939-1945</em>. HarperPress, 2011.
+            </div>
+            <div class="source-item">
+                <span class="source-number">[8]</span>
+                National WWII Museum. "Research Starters: Worldwide Deaths in World War II." <em>nationalww2museum.org</em>.
+            </div>
+            <div class="source-item">
+                <span class="source-number">[9]</span>
+                Overy, Richard. <em>Why the Allies Won</em>. W.W. Norton & Company, 1995.
+            </div>
+            <div class="source-item">
+                <span class="source-number">[10]</span>
+                Snyder, Timothy. <em>Bloodlands: Europe Between Hitler and Stalin</em>. Basic Books, 2010.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>World War II Website</p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #90caf9;"> y8tireu-llc © 2024 </p>
+        <p style="font-size: 1rem; margin-top: 1rem; color: #64b5f6; font-weight: 500;">Made By: Sanjivram, Riaan And Smaran</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            const hamburger = document.querySelector('.hamburger');
+            const overlay = document.querySelector('.nav-overlay');
+            
+            nav.classList.toggle('open');
+            hamburger.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-container a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+    </script>
+</body>
+</html>
